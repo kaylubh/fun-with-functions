@@ -8,12 +8,8 @@ Write a function called sum() that takes in two numbers as arguments and then re
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testSum() function below and check the console to see if the test passes.*/
 
 // Write your code here
-function sum(a, b, c) { //eslint-disable-line
-  if (c === undefined) {
-    return [a+b, `The sum of ${a} and ${b} is ${a+b}.`];
-  } else {
-    return [a+b+c, `${a} and ${b} and ${c} sum to ${a+b+c}.`];
-  }
+function sum(a, b) { //eslint-disable-line
+  return [a + b, `The sum of ${a} and ${b} is ${a + b}.`];
 }
 
 // Here is the test for sum(); uncomment it to run it
@@ -30,18 +26,8 @@ Write a function called multiply() that takes in two numbers as arguments and re
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testMultiply() function and see if the test passes.*/
 
 // Write your code here
-function multiply(a, b, c) { //eslint-disable-line
-  if (typeof a === 'number' && c === undefined) {
-    return [a*b, `The product of ${a} and ${b} is ${a*b}.`];
-  } else if (c !== undefined) {
-    return [a*b*c, `The product of ${a} and ${b} and ${c} is ${a*b*c}.`];
-  } else if (Array.isArray(a)) {
-    let product = 1;
-    for ( let i = 0; i < a.length; i++) {
-      product *= a[i];
-    }
-    return product;
-  }
+function multiply(a, b) { //eslint-disable-line
+  return [a*b, `The product of ${a} and ${b} is ${a*b}.`];
 }
 
 // Here is the test for multiply(); uncomment it to run it
@@ -62,9 +48,13 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
-  let total = sum(a, b, c);
-  let product = multiply(a, b, c);
-  return [total[0], product[0], total[1], product[1]];
+  let partialTotal = sum(a, b)[0];
+  let total = sum(partialTotal, c)[0];
+
+  let partialProduct = multiply(a, b)[0];
+  let product = multiply(partialProduct, c)[0];
+
+  return [total, product, `${a} and ${b} and ${c} sum to ${total}.`, `The product of ${a} and ${b} and ${c} is ${product}.`];
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
@@ -86,7 +76,8 @@ Test this function by hand in the console to get it working, and when you think 
 let testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) { //eslint-disable-line
-  let total = sum(sumArr[0], sumArr[1], sumArr[2])[0];
+  let partialTotal = sum(sumArr[0], sumArr[1])[0];
+  let total = sum(partialTotal, sumArr[2])[0];
   return [total, `${sumArr} was passed in as an array of numbers, and ${total} is their sum.`];
 }
 
@@ -108,7 +99,8 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-  let product = multiply(multArr[0], multArr[1], multArr[2])[0];
+  let partialProduct = multiply(multArr[0], multArr[1])[0];
+  let product = multiply(partialProduct, multArr[2])[0];
   return [product, `The numbers ${multArr} have a product of ${product}.`];
 }
 
@@ -137,7 +129,12 @@ Test this function by hand in the console to get it working, and when you think 
 let testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
-  let product = multiply(dynamicArray);
+  let product = multiply(dynamicArray[0], dynamicArray[1])[0];
+  if (dynamicArray.length > 2) {
+    for (let i = 2; i < dynamicArray.length; i++) {
+      product = multiply(product, dynamicArray[i])[0];
+    }
+  }
   return [product, `The numbers ${dynamicArray} have a product of ${product}.`];
 }
 
