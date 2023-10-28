@@ -26,7 +26,7 @@ Write a function called multiply() that takes in two numbers as arguments and re
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testMultiply() function and see if the test passes.*/
 
 // Write your code here
-function multiply(a, b, c) { //eslint-disable-line
+function multiply(a, b) { //eslint-disable-line
   return [a*b, `The product of ${a} and ${b} is ${a*b}.`];
 }
 
@@ -48,9 +48,13 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
-  let total = sum(a, b, c);
-  let product = multiply(a, b, c);
-  return [total[0], product[0], total[1], product[1]];
+  let partialTotal = sum(a, b);
+  let total = sum(partialTotal[0], c);
+
+  let partialProduct = multiply(a, b);
+  let product = multiply(partialProduct[0], c);
+
+  return [total[0], product[0], `${a} and ${b} and ${c} sum to ${total[0]}.`, `The product of ${a} and ${b} and ${c} is ${product[0]}.`];
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
