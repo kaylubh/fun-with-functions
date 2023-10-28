@@ -48,13 +48,13 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
-  let partialTotal = sum(a, b);
-  let total = sum(partialTotal[0], c);
+  let partialTotal = sum(a, b)[0];
+  let total = sum(partialTotal, c)[0];
 
-  let partialProduct = multiply(a, b);
-  let product = multiply(partialProduct[0], c);
+  let partialProduct = multiply(a, b)[0];
+  let product = multiply(partialProduct, c)[0];
 
-  return [total[0], product[0], `${a} and ${b} and ${c} sum to ${total[0]}.`, `The product of ${a} and ${b} and ${c} is ${product[0]}.`];
+  return [total, product, `${a} and ${b} and ${c} sum to ${total}.`, `The product of ${a} and ${b} and ${c} is ${product}.`];
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
@@ -76,7 +76,8 @@ Test this function by hand in the console to get it working, and when you think 
 let testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) { //eslint-disable-line
-  let total = sum(sumArr[0], sumArr[1], sumArr[2])[0];
+  let partialTotal = sum(sumArr[0], sumArr[1])[0];
+  let total = sum(partialTotal, sumArr[2])[0];
   return [total, `${sumArr} was passed in as an array of numbers, and ${total} is their sum.`];
 }
 
