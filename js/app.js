@@ -27,17 +27,7 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiply(a, b, c) { //eslint-disable-line
-  if (typeof a === 'number' && c === undefined) {
-    return [a*b, `The product of ${a} and ${b} is ${a*b}.`];
-  } else if (c !== undefined) {
-    return [a*b*c, `The product of ${a} and ${b} and ${c} is ${a*b*c}.`];
-  } else if (Array.isArray(a)) {
-    let product = 1;
-    for ( let i = 0; i < a.length; i++) {
-      product *= a[i];
-    }
-    return product;
-  }
+  return [a*b, `The product of ${a} and ${b} is ${a*b}.`];
 }
 
 // Here is the test for multiply(); uncomment it to run it
