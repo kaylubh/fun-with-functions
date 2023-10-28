@@ -99,7 +99,8 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-  let product = multiply(multArr[0], multArr[1], multArr[2])[0];
+  let partialProduct = multiply(multArr[0], multArr[1])[0];
+  let product = multiply(partialProduct, multArr[2])[0];
   return [product, `The numbers ${multArr} have a product of ${product}.`];
 }
 
