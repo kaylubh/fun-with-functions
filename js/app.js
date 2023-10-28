@@ -8,12 +8,8 @@ Write a function called sum() that takes in two numbers as arguments and then re
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testSum() function below and check the console to see if the test passes.*/
 
 // Write your code here
-function sum(a, b, c) { //eslint-disable-line
-  if (c === undefined) {
-    return [a+b, `The sum of ${a} and ${b} is ${a+b}.`];
-  } else {
-    return [a+b+c, `${a} and ${b} and ${c} sum to ${a+b+c}.`];
-  }
+function sum(a, b) { //eslint-disable-line
+  return [a + b, `The sum of ${a} and ${b} is ${a + b}.`];
 }
 
 // Here is the test for sum(); uncomment it to run it
